@@ -28,6 +28,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".QRCodeScannerActivity"></activity>
+        <activity android:name=".WifiP2pActivity"></activity>
+        <activity android:name=".ConnectedActivity"></activity>
     </application>
 
 </manifest>

@@ -27,15 +27,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
-        intentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
-        intentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
-        intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
-
-        mManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
-        mChannel = mManager.initialize(this, getMainLooper(), null);
-
         setContentView(R.layout.main);
     }
 
@@ -59,20 +50,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void discoverPeers(View view) {
-        mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {
-
-
-
-            @Override
-            public void onSuccess() {
-                Toast.makeText(getBaseContext(), " Another Device found", Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onFailure(int reasonCode) {
-                Toast.makeText(getBaseContext(), " Failed Discovery", Toast.LENGTH_LONG).show();
-            }
-        });
+        Intent intent = new Intent(this, WifiP2pActivity.class);
+        startActivity(intent);
     }
 
     public boolean isCameraAvailable() {
@@ -99,22 +78,5 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        receiver = new P2PBroadcastReceiver(mManager, mChannel, this);
-        registerReceiver(receiver, intentFilter);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        unregisterReceiver(receiver);
-    }
-
-    public void setIsWifiP2pEnabled(boolean isWifiP2pEnabled) {
-        this.wifiP2pEnabled = isWifiP2pEnabled;
     }
 }
