@@ -3,6 +3,9 @@
     package="com.xebia.spicejet">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-feature android:name="android.hardware.camera" />
 
@@ -23,6 +26,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".QRCodeScannerActivity"></activity>
+        <activity android:name=".PlayerActivity"></activity>
+        <activity android:name=".ContentActivity"></activity>
+        <activity android:name=".DownloadedActivity"></activity>
+
+
     </application>
 
 </manifest>

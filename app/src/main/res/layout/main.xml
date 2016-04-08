@@ -19,4 +19,22 @@
         android:layout_width="fill_parent"
         android:onClick="launchQRScanner"
         android:text="@string/scan_only_qr_codes" />
+    <Button
+        android:id="@+id/player"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:onClick="launchPlayer"
+        android:text="Play" />
+    <Button
+        android:id="@+id/content"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:onClick="launchContent"
+        android:text="Entertainment" />
+    <Button
+        android:id="@+id/downloaded"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:onClick="launchDownloaded"
+        android:text="Downloaded" />
 </LinearLayout>
