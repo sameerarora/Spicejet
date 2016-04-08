@@ -2,7 +2,8 @@
     <string name="app_name">Spicejet</string>
     <string name="scan">Scan</string>
     <string name="scan_only_qr_codes">Scan QR Code</string>
-    <string name="dummy_content">dummy</string>
-    <string name="dummy_button">button</string>
+    <string name="discoverPeers">Discover</string>
+    <string name="dummy_content">Dummy Content</string>
+    <string name="dummy_button">Dummy</string>
 
 </resources>

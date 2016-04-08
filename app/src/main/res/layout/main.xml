@@ -19,4 +19,11 @@
         android:layout_width="fill_parent"
         android:onClick="launchQRScanner"
         android:text="@string/scan_only_qr_codes" />
+    <Button
+        android:id="@+id/findpeers_btn"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:onClick="discoverPeers"
+        android:text="@string/discoverPeers" />
+
 </LinearLayout>
