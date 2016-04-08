@@ -121,6 +121,7 @@ public class QRCodeScannerActivity extends AppCompatActivity implements Camera.P
         finish();
     }
 
+    @Override
     public void onPreviewFrame(byte[] data, Camera camera) {
         Camera.Parameters parameters = camera.getParameters();
         Camera.Size size = parameters.getPreviewSize();
