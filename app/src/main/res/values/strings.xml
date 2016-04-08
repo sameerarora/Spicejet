@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Spicejet</string>
+    <string name="scan">Scan</string>
+    <string name="scan_only_qr_codes">Scan QR Code</string>
+    <string name="dummy_content">dummy</string>
+    <string name="dummy_button">button</string>
+
+</resources>
