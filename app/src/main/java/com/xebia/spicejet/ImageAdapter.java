@@ -60,18 +60,18 @@ public class ImageAdapter extends BaseAdapter {
             ImageView iv = (ImageView)v.findViewById(R.id.icon_image);
             iv.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    //try {
+                    try {
                         Log.d("Download", "Downloading...");
                         Toast.makeText(MainActivity.mainContext, "Downloading...", Toast.LENGTH_LONG);
-                        String playUrl = "file:/storage/emulated/0/Download/spice/sample1.3gp";//getDataSource(urls[position]);
+                        String playUrl = getDataSource(urls[position]);
                         Toast.makeText(MainActivity.mainContext, "Download complete " + playUrl, Toast.LENGTH_LONG);
                         ContentRecord contentRecord = new ContentRecord(mTextsIds[position], urls[position], MainActivity.TIMEOUT);
                         contentRecord.setPlayUrl(playUrl);
                         MainActivity.records.put(contentRecord.getName(), contentRecord);
                         Log.d("Download", "Download complete " + playUrl);
-//                    } catch (IOException e) {
-//                        throw new RuntimeException(e.getMessage());
-//                    }
+                    } catch (IOException e) {
+                        throw new RuntimeException(e.getMessage());
+                    }
                 }
             });
             iv.setPadding(8, 8, 8, 8);
@@ -96,7 +96,7 @@ public class ImageAdapter extends BaseAdapter {
             cn.connect();
             InputStream cnIs = cn.getInputStream();
             //InputStream stream = cnIs;
-            InputStream stream = new CipherInputStream(cnIs, MainActivity.encryptionCipher);
+            InputStream stream = cnIs;//new CipherInputStream(cnIs, MainActivity.encryptionCipher);
 
             if (stream == null)
                 throw new RuntimeException("stream is null");

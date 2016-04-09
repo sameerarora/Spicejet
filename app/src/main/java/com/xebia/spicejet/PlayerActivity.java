@@ -16,7 +16,6 @@ import java.net.URLConnection;
 import java.util.Enumeration;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -40,6 +39,8 @@ public class PlayerActivity extends Activity {
     private ImageButton mStop;
     private String current;
     private static ContentRecord record = MainActivity.currentlyPlaying;
+
+
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -112,10 +113,7 @@ public class PlayerActivity extends Activity {
                     return;
                 }
                 current = path;
-                String dataSource = getDataSource(record.getPlayUrl());
-                Uri video = Uri.parse(dataSource);
-                //mVideoView.setVideoPath(dataSource);
-                mVideoView.setVideoURI(video);
+                mVideoView.setVideoPath(getDataSource(record.getPlayUrl()));
                 mVideoView.start();
                 mVideoView.requestFocus();
 
@@ -128,55 +126,35 @@ public class PlayerActivity extends Activity {
         }
     }
 
-//       @Override
-//    protected void onStop() {
-//        super.onStop();
-//        try {
-//            serverSocket.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-
-
-    private void decrypt() {
-
-    }
-
     private String getDataSource(String path) throws IOException {
-        String ipAddress = MainActivity.SERVERIP;
-        String serverPort = String.valueOf(MainActivity.SERVERPORT);
-        String serverUrl = "http://127.0.0.1:8080?" + path;
-        return serverUrl;
-//        if (!URLUtil.isNetworkUrl(path)) {
-//            return path;
-//        } else {
-//            URL url = new URL(path);
-//            URLConnection cn = url.openConnection();
-//            cn.connect();
-//            InputStream cnIs = cn.getInputStream();
-//            InputStream stream = cn.getInputStream();
-//            if (stream == null)
-//                throw new RuntimeException("stream is null");
-//            File temp = File.createTempFile("mediaplayertmp", "dat");
-//            temp.deleteOnExit();
-//            String tempPath = temp.getAbsolutePath();
-//            FileOutputStream out = new FileOutputStream(temp);
-//            byte buf[] = new byte[128];
-//            do {
-//                int numread = stream.read(buf);
-//                if (numread <= 0)
-//                    break;
-//                out.write(buf, 0, numread);
-//            } while (true);
-//            try {
-//                stream.close();
-//            } catch (IOException ex) {
-//                Log.e(TAG, "error: " + ex.getMessage(), ex);
-//            }
-//            return tempPath;
-//        }
+        if (!URLUtil.isNetworkUrl(path)) {
+            return path;
+        } else {
+            URL url = new URL(path);
+            URLConnection cn = url.openConnection();
+            cn.connect();
+            InputStream cnIs = cn.getInputStream();
+            InputStream stream = cn.getInputStream();
+            if (stream == null)
+                throw new RuntimeException("stream is null");
+            File temp = File.createTempFile("mediaplayertmp", "dat");
+            temp.deleteOnExit();
+            String tempPath = temp.getAbsolutePath();
+            FileOutputStream out = new FileOutputStream(temp);
+            byte buf[] = new byte[128];
+            do {
+                int numread = stream.read(buf);
+                if (numread <= 0)
+                    break;
+                out.write(buf, 0, numread);
+            } while (true);
+            try {
+                stream.close();
+            } catch (IOException ex) {
+                Log.e(TAG, "error: " + ex.getMessage(), ex);
+            }
+            return tempPath;
+        }
     }
 
 
