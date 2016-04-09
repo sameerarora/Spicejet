@@ -11,6 +11,7 @@ import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.net.wifi.p2p.WifiP2pInfo;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -122,9 +123,8 @@ public class WifiP2pActivity extends ActionBarActivity implements WifiP2pManager
 
             Intent intent = new Intent(this, ConnectedActivity.class);
             Bundle bundle = new Bundle();
-
             bundle.putParcelable("Info", info);
-
+            bundle.putStringArray("shared_content", MainActivity.getRecordList());
             intent.putExtras(bundle);
             startActivity(intent);
         }

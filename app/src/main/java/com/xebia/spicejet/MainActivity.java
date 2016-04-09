@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int ZBAR_QR_SCANNER_REQUEST = 1;
     public static Context mainContext;
     public static Map<String, ContentRecord> records = new HashMap<>();
+    public static Map<String, ContentRecord> sharedRecords = new HashMap<>();
     public static Date referenceDate = new Date();
     public static long TIMEOUT = 60 * 60 * 2 * 1000;
     public static String securityToken = "test12345678";
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        records.put("def", new ContentRecord("Mick Jagger", "file://def.mpg", 10l));
         mainContext = this;
         encryptionCipher = getEncryptionCipher(securityToken, Cipher.ENCRYPT_MODE);
         decryptionCipher = getDecryptionCipher(securityToken, Cipher.DECRYPT_MODE);
@@ -92,6 +94,12 @@ public class MainActivity extends AppCompatActivity {
 
     public static String[] getRecordList() {
         Set<String> set = records.keySet();
+        String[] arr = new String[set.size()];
+        return set.toArray(arr);
+    }
+
+    public static String[] getSharedRecordsList() {
+        Set<String> set = sharedRecords.keySet();
         String[] arr = new String[set.size()];
         return set.toArray(arr);
     }
@@ -183,6 +191,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void launchSharedContent(View v) {
+        Intent intent = new Intent(this, SharedContentActivity.class);
+        startActivity(intent);
+    }
 
     public void launchQRScanner(View v) {
         if (isCameraAvailable()) {

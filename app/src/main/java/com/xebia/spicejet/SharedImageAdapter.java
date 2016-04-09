@@ -25,13 +25,13 @@ import java.util.List;
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 
-public class ImageAdapter extends BaseAdapter {
+public class SharedImageAdapter extends BaseAdapter {
 
     private Context mContext;
     private Context baseContext;
 
 
-    public ImageAdapter(Context c, Context baseContext) {
+    public SharedImageAdapter(Context c, Context baseContext) {
         mContext = c;
         this.baseContext = baseContext;
     }

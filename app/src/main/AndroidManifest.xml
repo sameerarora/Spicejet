@@ -33,6 +33,7 @@
         <activity android:name=".ConnectedActivity"></activity>
         <activity android:name=".PlayerActivity"></activity>
         <activity android:name=".ContentActivity"></activity>
+        <activity android:name=".SharedContentActivity"></activity>
         <activity android:name=".DownloadedActivity"></activity>
 
 

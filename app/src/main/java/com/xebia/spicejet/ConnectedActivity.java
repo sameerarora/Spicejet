@@ -25,9 +25,16 @@ public class ConnectedActivity extends ActionBarActivity {
 
         WifiP2pInfo info = bundle.getParcelable("Info");
 
-        TextView tv = (TextView) findViewById(R.id.textViewPeerName);
+        /*String[] shared_contents = bundle.getStringArray("shared_content");
+        for (String key : shared_contents) {
+            MainActivity.sharedRecords.put(key, new ContentRecord(key, key, 1l));
+        }*/
+      //  intent = new Intent(this, SharedContentActivity.class);
+      //  startActivity(intent);
 
-        if(info.isGroupOwner) {
+        //TextView tv = (TextView) findViewById(R.id.textViewPeerName);
+
+        if (info.isGroupOwner) {
             ServerAsyncTask serverAsyncTask = new ServerAsyncTask(getApplicationContext(), findViewById(R.id.textViewPeerName), info.groupOwnerAddress);
             serverAsyncTask.execute(port);
         } else {

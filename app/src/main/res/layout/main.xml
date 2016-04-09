@@ -39,6 +39,13 @@
         android:layout_width="fill_parent"
         android:onClick="launchContent"
         android:text="Entertainment" />
+
+    <Button
+        android:id="@+id/sharedContent"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:onClick="launchSharedContent"
+        android:text="Shared Media" />
     <Button
         android:id="@+id/downloaded"
         android:layout_height="wrap_content"

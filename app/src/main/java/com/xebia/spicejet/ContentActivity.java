@@ -15,7 +15,7 @@ public class ContentActivity extends Activity {
         StrictMode.setThreadPolicy(policy);
         setContentView(R.layout.activity_media_content);
         GridView gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new ImageAdapter(this, getBaseContext()));
+        gridview.setAdapter(new SharedImageAdapter(this, getBaseContext()));
 
     }
 }
