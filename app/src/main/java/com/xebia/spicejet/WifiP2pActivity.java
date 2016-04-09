@@ -149,7 +149,8 @@ public class WifiP2pActivity extends ActionBarActivity implements WifiP2pManager
             }
 //
 //
-//            Intent intent = new Intent(this, ConnectedActivity.class);
+            Intent intent1 = new Intent(this, SharedContentActivity.class);
+            startActivity(intent1);
 //            Bundle bundle = new Bundle();
 //            bundle.putParcelable("Info", info);
 //            bundle.putStringArray("shared_content", MainActivity.getRecordList());
