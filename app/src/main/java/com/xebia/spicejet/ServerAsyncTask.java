@@ -35,7 +35,7 @@ public class ServerAsyncTask extends AsyncTask<Integer, String, Void> {
             publishProgress("Waiting for connection");
             port = params[0];
             server = new ServerSocket(port);
-            publishProgress("Server port opened:"+server.getLocalPort());
+            publishProgress("Server port opened:" + server.getLocalPort());
             client = server.accept();
 
             publishProgress("Connected to Client");
@@ -48,7 +48,7 @@ public class ServerAsyncTask extends AsyncTask<Integer, String, Void> {
             //}
 
             server.close();
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         } finally {
         }
