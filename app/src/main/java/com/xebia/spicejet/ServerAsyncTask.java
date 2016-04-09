@@ -53,7 +53,7 @@ public class ServerAsyncTask extends AsyncTask<Integer, String, Void> {
 
             //}
 
-            server.close();
+           // server.close();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

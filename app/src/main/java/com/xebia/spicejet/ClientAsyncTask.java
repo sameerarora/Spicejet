@@ -71,8 +71,8 @@ public class ClientAsyncTask extends AsyncTask<Integer, String, Void> {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(client.getInputStream()));
             String temp = bufferedReader.readLine();
             MainActivity.sharedRecords.put(temp, new ContentRecord(temp, temp, 1l));
-            outputStream.close();
-            inputStream.close();
+            //outputStream.close();
+            //inputStream.close();
 
         } catch (IOException e) {
             publishProgress(e.getMessage());

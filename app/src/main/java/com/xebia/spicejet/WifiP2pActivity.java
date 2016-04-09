@@ -19,6 +19,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.net.Socket;
+
 public class WifiP2pActivity extends ActionBarActivity implements WifiP2pManager.ConnectionInfoListener, WifiP2pManager.PeerListListener {
     private Boolean isWifiP2pEnabled = false;
     private Boolean isConnected = false;
@@ -27,6 +29,9 @@ public class WifiP2pActivity extends ActionBarActivity implements WifiP2pManager
     private WifiP2pManager.Channel channel;
     private BroadcastReceiver receiver;
     private IntentFilter intentFilter;
+    Socket client;
+    String host;
+    int port = 1234;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,12 +126,35 @@ public class WifiP2pActivity extends ActionBarActivity implements WifiP2pManager
     public void onConnectionInfoAvailable(WifiP2pInfo info) {
         if (info.groupFormed) {
 
-            Intent intent = new Intent(this, ConnectedActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putParcelable("Info", info);
-            bundle.putStringArray("shared_content", MainActivity.getRecordList());
-            intent.putExtras(bundle);
-            startActivity(intent);
+            Intent intent = this.getIntent();
+            Bundle bundle = intent.getExtras();
+
+//            WifiP2pInfo info = bundle.getParcelable("Info");
+
+        /*String[] shared_contents = bundle.getStringArray("shared_content");
+        for (String key : shared_contents) {
+            MainActivity.sharedRecords.put(key, new ContentRecord(key, key, 1l));
+        }*/
+            //  intent = new Intent(this, SharedContentActivity.class);
+            //  startActivity(intent);
+
+            //TextView tv = (TextView) findViewById(R.id.textViewPeerName);
+
+            if (info.isGroupOwner) {
+                ServerAsyncTask serverAsyncTask = new ServerAsyncTask(getApplicationContext(), findViewById(R.id.textViewPeerName), info.groupOwnerAddress);
+                serverAsyncTask.execute(port);
+            } else {
+                ClientAsyncTask clientAsyncTask = new ClientAsyncTask(getApplicationContext(), findViewById(R.id.textViewPeerName), info.groupOwnerAddress);
+                clientAsyncTask.execute(port);
+            }
+//
+//
+//            Intent intent = new Intent(this, ConnectedActivity.class);
+//            Bundle bundle = new Bundle();
+//            bundle.putParcelable("Info", info);
+//            bundle.putStringArray("shared_content", MainActivity.getRecordList());
+//            intent.putExtras(bundle);
+//            startActivity(intent);
         }
     }
 

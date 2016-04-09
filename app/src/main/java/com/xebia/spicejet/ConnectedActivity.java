@@ -18,7 +18,7 @@ public class ConnectedActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_connected);
+        //setContentView(R.layout.activity_connected);
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
